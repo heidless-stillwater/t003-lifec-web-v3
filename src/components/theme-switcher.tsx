@@ -56,7 +56,7 @@ const daisyUIThemes = [
 ];
 
 export function ThemeSwitcher() {
-  const {setTheme} = useTheme();
+  const {setTheme, setThemeType} = useTheme();
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -69,15 +69,25 @@ export function ThemeSwitcher() {
       <DropdownMenuContent className="w-56" align="end">
         <DropdownMenuLabel>Appearance</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={() => setTheme('light', 'daisy', 'light')}>
+        <DropdownMenuItem
+          onClick={() => {
+            setThemeType('daisy');
+            setTheme('light');
+          }}
+        >
           <Sun className="mr-2 h-4 w-4" />
           <span>Light</span>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme('dark', 'daisy', 'dark')}>
+        <DropdownMenuItem
+          onClick={() => {
+            setThemeType('daisy');
+            setTheme('dark');
+          }}
+        >
           <Moon className="mr-2 h-4 w-4" />
           <span>Dark</span>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme('system', 'daisy', 'system')}>
+        <DropdownMenuItem onClick={() => setTheme('system')}>
           <Monitor className="mr-2 h-4 w-4" />
           <span>System</span>
         </DropdownMenuItem>
@@ -92,7 +102,8 @@ export function ThemeSwitcher() {
                   <DropdownMenuItem
                     key={theme}
                     onClick={() => {
-                      setTheme(theme, 'css', 'light');
+                      setThemeType('css');
+                      setTheme(theme);
                     }}
                   >
                     {theme}
@@ -113,7 +124,8 @@ export function ThemeSwitcher() {
                   <DropdownMenuItem
                     key={theme}
                     onClick={() => {
-                      setTheme(theme, 'daisy', 'light');
+                      setThemeType('daisy');
+                      setTheme(theme);
                     }}
                   >
                     {theme}
