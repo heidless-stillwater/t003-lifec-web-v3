@@ -1,6 +1,6 @@
 import type {Config} from 'tailwindcss';
 
-const config = {
+export default {
   darkMode: ['class'],
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -15,11 +15,16 @@ const config = {
         code: ['monospace'],
       },
       colors: {
-        border: 'hsl(var(--border))',
-        input: 'hsl(var(--input))',
-        ring: 'hsl(var(--ring))',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
+        card: {
+          DEFAULT: 'hsl(var(--card))',
+          foreground: 'hsl(var(--card-foreground))',
+        },
+        popover: {
+          DEFAULT: 'hsl(var(--popover))',
+          foreground: 'hsl(var(--popover-foreground))',
+        },
         primary: {
           DEFAULT: 'hsl(var(--primary))',
           foreground: 'hsl(var(--primary-foreground))',
@@ -27,10 +32,6 @@ const config = {
         secondary: {
           DEFAULT: 'hsl(var(--secondary))',
           foreground: 'hsl(var(--secondary-foreground))',
-        },
-        destructive: {
-          DEFAULT: 'hsl(var(--destructive))',
-          foreground: 'hsl(var(--destructive-foreground))',
         },
         muted: {
           DEFAULT: 'hsl(var(--muted))',
@@ -40,13 +41,19 @@ const config = {
           DEFAULT: 'hsl(var(--accent))',
           foreground: 'hsl(var(--accent-foreground))',
         },
-        popover: {
-          DEFAULT: 'hsl(var(--popover))',
-          foreground: 'hsl(var(--popover-foreground))',
+        destructive: {
+          DEFAULT: 'hsl(var(--destructive))',
+          foreground: 'hsl(var(--destructive-foreground))',
         },
-        card: {
-          DEFAULT: 'hsl(var(--card))',
-          foreground: 'hsl(var(--card-foreground))',
+        border: 'hsl(var(--border))',
+        input: 'hsl(var(--input))',
+        ring: 'hsl(var(--ring))',
+        chart: {
+          '1': 'hsl(var(--chart-1))',
+          '2': 'hsl(var(--chart-2))',
+          '3': 'hsl(var(--chart-3))',
+          '4': 'hsl(var(--chart-4))',
+          '5': 'hsl(var(--chart-5))',
         },
       },
       borderRadius: {
@@ -54,7 +61,7 @@ const config = {
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
       },
-       keyframes: {
+      keyframes: {
         'accordion-down': {
           from: {
             height: '0',
@@ -89,122 +96,5 @@ const config = {
       },
     },
   },
-  plugins: [require('tailwindcss-animate'), require('daisyui')],
-  daisyui: {
-    themes: [
-      {
-        light: {
-          ...require('daisyui/src/theming/themes')['light'],
-          primary: '#16A38B',
-          'primary-foreground': '#FFFFFF',
-          secondary: '#F0FDF9',
-          'secondary-foreground': '#1E40AF',
-          accent: '#86EFAC',
-          'accent-foreground': '#1E40AF',
-          background: '#F0FDF9',
-          foreground: '#020617',
-          border: '#86EFAC',
-          ring: '#16A38B',
-          '--radius': '0.5rem',
-        },
-        dark: {
-          ...require('daisyui/src/theming/themes')['dark'],
-          primary: '#16A38B',
-          'primary-foreground': '#FFFFFF',
-          secondary: '#020617',
-          'secondary-foreground': '#F0FDF9',
-          accent: '#86EFAC',
-          'accent-foreground': '#020617',
-          background: '#020617',
-          foreground: '#F0FDF9',
-          border: '#1E40AF',
-          ring: '#16A38B',
-          '--radius': '0.5rem',
-        },
-        'Teal Tranquility': {
-          primary: 'hsl(175, 55%, 45%)',
-          secondary: 'hsl(175, 30%, 95%)',
-          accent: 'hsl(175, 55%, 65%)',
-          neutral: 'hsl(210, 10%, 45%)',
-          'base-100': 'hsl(0, 0%, 100%)',
-          info: 'hsl(200, 80%, 50%)',
-          success: 'hsl(150, 60%, 45%)',
-          warning: 'hsl(45, 90%, 55%)',
-          error: 'hsl(0, 70%, 55%)',
-        },
-        'Ruby Radiance': {
-          primary: 'hsl(340, 65%, 50%)',
-          secondary: 'hsl(340, 30%, 95%)',
-          accent: 'hsl(340, 65%, 70%)',
-          neutral: 'hsl(220, 10%, 45%)',
-          'base-100': 'hsl(0, 0%, 100%)',
-          info: 'hsl(200, 80%, 50%)',
-          success: 'hsl(150, 60%, 45%)',
-          warning: 'hsl(45, 90%, 55%)',
-          error: 'hsl(0, 70%, 55%)',
-        },
-        'Amber Ambience': {
-          primary: 'hsl(40, 90%, 50%)',
-          secondary: 'hsl(40, 30%, 95%)',
-          accent: 'hsl(40, 90%, 70%)',
-          neutral: 'hsl(210, 10%, 45%)',
-          'base-100': 'hsl(0, 0%, 100%)',
-          info: 'hsl(200, 80%, 50%)',
-          success: 'hsl(150, 60%, 45%)',
-          warning: 'hsl(45, 90%, 55%)',
-          error: 'hsl(0, 70%, 55%)',
-        },
-        'Emerald Elegance': {
-          primary: 'hsl(150, 55%, 45%)',
-          secondary: 'hsl(150, 30%, 95%)',
-          accent: 'hsl(150, 55%, 65%)',
-          neutral: 'hsl(210, 10%, 45%)',
-          'base-100': 'hsl(0, 0%, 100%)',
-          info: 'hsl(200, 80%, 50%)',
-          success: 'hsl(150, 60%, 45%)',
-          warning: 'hsl(45, 90%, 55%)',
-          error: 'hsl(0, 70%, 55%)',
-        },
-        'Sapphire Serenity': {
-          primary: 'hsl(220, 65%, 55%)',
-          secondary: 'hsl(220, 30%, 95%)',
-          accent: 'hsl(220, 65%, 75%)',
-          neutral: 'hsl(210, 10%, 45%)',
-          'base-100': 'hsl(0, 0%, 100%)',
-          info: 'hsl(200, 80%, 50%)',
-          success: 'hsl(150, 60%, 45%)',
-          warning: 'hsl(45, 90%, 55%)',
-          error: 'hsl(0, 70%, 55%)',
-        },
-      },
-      'cupcake',
-      'bumblebee',
-      'corporate',
-      'synthwave',
-      'retro',
-      'cyberpunk',
-      'valentine',
-      'halloween',
-      'garden',
-      'forest',
-      'aqua',
-      'lofi',
-      'pastel',
-      'fantasy',
-      'wireframe',
-      'black',
-      'luxury',
-      'dracula',
-      'cmyk',
-      'autumn',
-      'business',
-      'acid',
-      'lemonade',
-      'night',
-      'coffee',
-      'winter',
-    ],
-  },
+  plugins: [require('tailwindcss-animate')],
 } satisfies Config;
-
-export default config;
