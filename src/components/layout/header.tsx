@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link";
@@ -7,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu, X, Phone, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { ThemeSwitcher } from "../theme-switcher";
 
 const navLinks = [
   { href: "/about", label: "About" },
@@ -75,6 +77,7 @@ export function Header() {
             <Button asChild>
               <Link href="/contact">Start Here</Link>
             </Button>
+            <ThemeSwitcher />
           </div>
 
           <div className="lg:hidden">
@@ -118,3 +121,5 @@ export function Header() {
     </header>
   );
 }
+
+    
