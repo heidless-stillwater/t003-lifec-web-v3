@@ -87,11 +87,16 @@ export function ThemeProvider({
     const themeToClassName = (themeName: string) => themeName.toLowerCase().replace(/[\s_&]+/g, '-');
 
     // Remove all color theme classes
-    const allThemeClassNames = Object.values(appThemes).flat().map(t => themeToClassName(t.name));
+    const allThemeClassNames = Object.values(appThemes)
+      .flat()
+      .filter(t => t && t.name) // <-- FIX: Filter out malformed themes
+      .map(t => themeToClassName(t.name!));
     root.classList.remove(...allThemeClassNames);
     
     // Add current color theme class
-    root.classList.add(themeToClassName(colorTheme));
+    if (colorTheme) {
+      root.classList.add(themeToClassName(colorTheme));
+    }
 
     try {
       localStorage.setItem(storageKey, JSON.stringify({ mode, colorTheme, category }))
@@ -101,11 +106,9 @@ export function ThemeProvider({
   }, [mode, colorTheme, category, initializing]);
 
   const currentThemeDef = React.useMemo(() => {
+    if (!category || !appThemes[category]) return null;
     const themesForCategory = appThemes[category];
-    if (themesForCategory) {
-      return themesForCategory.find(t => t.name === colorTheme) || null;
-    }
-    return Object.values(appThemes).flat().find(t => t.name === colorTheme) || null;
+    return themesForCategory.find(t => t.name === colorTheme) || null;
   }, [colorTheme, category]);
 
 
@@ -150,5 +153,3 @@ export const useTheme = () => {
 
   return context
 }
-
-    
