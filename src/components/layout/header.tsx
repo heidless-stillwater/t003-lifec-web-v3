@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu, X, Phone, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { ThemeSwitcher } from '@/components/layout/theme-switcher';
 
 const navLinks = [
   { href: "/about", label: "About" },
@@ -50,7 +51,7 @@ export function Header() {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+        "sticky top-0 left-0 right-0 z-50 transition-all duration-300",
         isScrolled ? "bg-background/80 backdrop-blur-lg shadow-md" : "bg-transparent"
       )}
     >
@@ -75,6 +76,7 @@ export function Header() {
             <Button asChild>
               <Link href="/contact">Start Here</Link>
             </Button>
+            <ThemeSwitcher />
           </div>
 
           <div className="lg:hidden">

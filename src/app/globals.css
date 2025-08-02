@@ -4,47 +4,67 @@
 
 @layer base {
   :root {
-    --background: 165 88% 97%;
-    --foreground: 224 71.4% 4.1%;
-    --card: 165 88% 97%;
-    --card-foreground: 224 71.4% 4.1%;
-    --popover: 165 88% 97%;
-    --popover-foreground: 224 71.4% 4.1%;
-    --primary: 169 79% 36%;
-    --primary-foreground: 355.7 100% 97.3%;
-    --secondary: 168 70% 85%;
-    --secondary-foreground: 169 79% 20%;
-    --muted: 168 70% 90%;
-    --muted-foreground: 225.5 8.9% 46.1%;
-    --accent: 140 78% 73%;
-    --accent-foreground: 140 80% 20%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 355.7 100% 97.3%;
-    --border: 169 79% 80%;
-    --input: 165 88% 100%;
-    --ring: 169 79% 36%;
+    /* Base theme colors - Blue theme defaults */
+    --background: 0 0% 100%;
+    --foreground: 224 71% 4%;
+    --primary: 221 83% 53%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 84% 5%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222 84% 5%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 221 83% 53%;
+    --card: 0 0% 100%;
+    --card-foreground: 224 71% 4%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 71% 4%;
+    
+    /* Additional semantic colors */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 98%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 98%;
+    --info: 199 89% 48%;
+    --info-foreground: 0 0% 98%;
+    
+    /* Border radius */
     --radius: 0.5rem;
   }
+
   .dark {
-    --background: 224 71.4% 4.1%;
-    --foreground: 165 88% 97%;
-    --card: 224 71.4% 4.1%;
-    --card-foreground: 165 88% 97%;
-    --popover: 224 71.4% 4.1%;
-    --popover-foreground: 165 88% 97%;
-    --primary: 169 79% 36%;
-    --primary-foreground: 355.7 100% 97.3%;
-    --secondary: 169 79% 20%;
-    --secondary-foreground: 165 88% 97%;
-    --muted: 169 79% 15%;
-    --muted-foreground: 168 70% 85%;
-    --accent: 140 78% 73%;
-    --accent-foreground: 140 80% 10%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 85.7% 97.3%;
-    --border: 169 79% 20%;
-    --input: 169 79% 20%;
-    --ring: 169 79% 40%;
+    /* Dark mode defaults will be overridden by theme system */
+    --background: 224 71% 4%;
+    --foreground: 213 31% 91%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 222 84% 5%;
+    --secondary: 222 84% 5%;
+    --secondary-foreground: 210 40% 98%;
+    --accent: 215 28% 17%;
+    --accent-foreground: 210 40% 98%;
+    --muted: 223 47% 11%;
+    --muted-foreground: 215 16% 57%;
+    --border: 215 28% 17%;
+    --input: 215 28% 17%;
+    --ring: 216 34% 17%;
+    --card: 224 71% 4%;
+    --card-foreground: 213 31% 91%;
+    --popover: 224 71% 4%;
+    --popover-foreground: 213 31% 91%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 98%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 98%;
+    --info: 199 89% 48%;
+    --info-foreground: 0 0% 98%;
   }
 }
 
@@ -55,4 +75,17 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Smooth transitions for theme changes */
+* {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+/* Override transition for transform and opacity to avoid conflicts */
+*[style*="transform"],
+*[style*="opacity"] {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, transform, opacity;
 }
