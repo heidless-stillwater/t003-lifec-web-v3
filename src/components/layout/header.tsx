@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu, X, Phone, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { ThemeSwitcher } from '@/components/layout/theme-switcher';
 
 const navLinks = [
   { href: "/about", label: "About" },
@@ -76,7 +75,6 @@ export function Header() {
             <Button asChild>
               <Link href="/contact">Start Here</Link>
             </Button>
-            <ThemeSwitcher />
           </div>
 
           <div className="lg:hidden">
