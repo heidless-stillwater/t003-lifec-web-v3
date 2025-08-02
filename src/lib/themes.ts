@@ -1,7 +1,4 @@
 
-export type ThemeMode = 'light' | 'dark';
-export type ThemeCategory = 'bespokeThemes' | 'primaryColorsThemes' | 'daisyUIThemes' | 'greyscaleThemes' | 'customThemes';
-
 export interface ThemeDefinition {
   name: string;
   category: ThemeCategory;
@@ -11,10 +8,47 @@ export interface ThemeDefinition {
   dark: { [key: string]: string };
 }
 
+export type ThemeMode = 'light' | 'dark';
+export type ThemeCategory = 'bespokeThemes' | 'primaryColorsThemes' | 'daisyUIThemes' | 'greyscaleThemes' | 'customThemes';
+
 export const defaultTheme = {
     name: 'Default',
     mode: 'light' as ThemeMode,
     category: 'primaryColorsThemes' as ThemeCategory
+};
+
+const commonLight = {
+  '--background': '0 0% 100%',
+  '--foreground': '0 0% 3.9%',
+  '--card': '0 0% 100%',
+  '--card-foreground': '0 0% 3.9%',
+  '--popover': '0 0% 100%',
+  '--popover-foreground': '0 0% 3.9%',
+  '--secondary': '0 0% 96.1%',
+  '--secondary-foreground': '0 0% 9%',
+  '--muted': '0 0% 96.1%',
+  '--muted-foreground': '0 0% 45.1%',
+  '--border': '0 0% 89.8%',
+  '--input': '0 0% 89.8%',
+  '--destructive': '0 84.2% 60.2%',
+  '--destructive-foreground': '0 0% 98%',
+};
+
+const commonDark = {
+  '--background': '0 0% 3.9%',
+  '--foreground': '0 0% 98%',
+  '--card': '0 0% 3.9%',
+  '--card-foreground': '0 0% 98%',
+  '--popover': '0 0% 3.9%',
+  '--popover-foreground': '0 0% 98%',
+  '--secondary': '0 0% 14.9%',
+  '--secondary-foreground': '0 0% 98%',
+  '--muted': '0 0% 14.9%',
+  '--muted-foreground': '0 0% 63.9%',
+  '--border': '0 0% 14.9%',
+  '--input': '0 0% 14.9%',
+  '--destructive': '0 62.8% 30.6%',
+  '--destructive-foreground': '0 0% 98%',
 };
 
 export const bespokeThemes: ThemeDefinition[] = [
@@ -63,119 +97,129 @@ export const bespokeThemes: ThemeDefinition[] = [
 ];
 
 export const primaryColorsThemes: ThemeDefinition[] = [
-    { name: 'Red', category: 'primaryColorsThemes', light: { '--primary': '0 72% 51%', '--accent': '0 86% 97%' }, dark: { '--primary': '0 72% 51%', '--accent': '0 86% 15%' } },
-    { name: 'Orange', category: 'primaryColorsThemes', light: { '--primary': '25 95% 53%', '--accent': '25 86% 97%' }, dark: { '--primary': '25 95% 53%', '--accent': '25 86% 15%' } },
-    { name: 'Amber', category: 'primaryColorsThemes', light: { '--primary': '45 93% 47%', '--accent': '45 86% 97%' }, dark: { '--primary': '45 93% 47%', '--accent': '45 86% 15%' } },
-    { name: 'Yellow', category: 'primaryColorsThemes', light: { '--primary': '54 96% 50%', '--accent': '54 86% 97%' }, dark: { '--primary': '54 96% 50%', '--accent': '54 86% 15%' } },
-    { name: 'Lime', category: 'primaryColorsThemes', light: { '--primary': '84 79% 44%', '--accent': '84 86% 97%' }, dark: { '--primary': '84 79% 44%', '--accent': '84 86% 15%' } },
-    { name: 'Green', category: 'primaryColorsThemes', light: { '--primary': '142 76% 36%', '--accent': '142 86% 97%' }, dark: { '--primary': '142 76% 36%', '--accent': '142 86% 15%' } },
-    { name: 'Emerald', category: 'primaryColorsThemes', light: { '--primary': '158 79% 41%', '--accent': '158 86% 97%' }, dark: { '--primary': '158 79% 41%', '--accent': '158 86% 15%' } },
-    { name: 'Teal', category: 'primaryColorsThemes', light: { '--primary': '173 80% 40%', '--accent': '173 86% 97%' }, dark: { '--primary': '173 80% 40%', '--accent': '173 86% 15%' } },
-    { name: 'Cyan', category: 'primaryColorsThemes', light: { '--primary': '190 95% 48%', '--accent': '190 86% 97%' }, dark: { '--primary': '190 95% 48%', '--accent': '190 86% 15%' } },
-    { name: 'Sky', category: 'primaryColorsThemes', light: { '--primary': '199 98% 52%', '--accent': '199 86% 97%' }, dark: { '--primary': '199 98% 52%', '--accent': '199 86% 15%' } },
-    { name: 'Blue', category: 'primaryColorsThemes', light: { '--primary': '217 91% 60%', '--accent': '217 86% 97%' }, dark: { '--primary': '217 91% 60%', '--accent': '217 86% 15%' } },
-    { name: 'Indigo', category: 'primaryColorsThemes', light: { '--primary': '239 84% 67%', '--accent': '239 86% 97%' }, dark: { '--primary': '239 84% 67%', '--accent': '239 86% 15%' } },
-    { name: 'Violet', category: 'primaryColorsThemes', light: { '--primary': '259 93% 68%', '--accent': '259 86% 97%' }, dark: { '--primary': '259 93% 68%', '--accent': '259 86% 15%' } },
-    { name: 'Purple', category: 'primaryColorsThemes', light: { '--primary': '271 91% 65%', '--accent': '271 86% 97%' }, dark: { '--primary': '271 91% 65%', '--accent': '271 86% 15%' } },
-    { name: 'Fuchsia', category: 'primaryColorsThemes', light: { '--primary': '291 89% 65%', '--accent': '291 86% 97%' }, dark: { '--primary': '291 89% 65%', '--accent': '291 86% 15%' } },
-    { name: 'Pink', category: 'primaryColorsThemes', light: { '--primary': '322 95% 61%', '--accent': '322 86% 97%' }, dark: { '--primary': '322 95% 61%', '--accent': '322 86% 15%' } },
-    { name: 'Rose', category: 'primaryColorsThemes', light: { '--primary': '341 96% 61%', '--accent': '341 86% 97%' }, dark: { '--primary': '341 96% 61%', '--accent': '341 86% 15%' } },
+    { name: 'Red', category: 'primaryColorsThemes', swatchColor: '0 72.2% 50.6%', light: { ...commonLight, '--primary': '0 72.2% 50.6%', '--primary-foreground': '0 85.7% 97.3%', '--ring': '0 72.2% 50.6%'}, dark: { ...commonDark, '--primary': '0 72.2% 50.6%', '--primary-foreground': '0 85.7% 97.3%', '--ring': '0 72.2% 50.6%'} },
+    { name: 'Orange', category: 'primaryColorsThemes', swatchColor: '24.6 95% 53.1%', light: { ...commonLight, '--primary': '24.6 95% 53.1%', '--primary-foreground': '20 14.3% 4.1%', '--ring': '24.6 95% 53.1%'}, dark: { ...commonDark, '--primary': '24.6 95% 53.1%', '--primary-foreground': '20 14.3% 4.1%', '--ring': '24.6 95% 53.1%'} },
+    { name: 'Amber', category: 'primaryColorsThemes', swatchColor: '45 93% 47%', light: { ...commonLight, '--primary': '45 93% 47%', '--primary-foreground': '0 0% 98%', '--ring': '45 93% 47%'}, dark: { ...commonDark, '--primary': '45 93% 47%', '--primary-foreground': '0 0% 98%', '--ring': '45 93% 47%'} },
+    { name: 'Yellow', category: 'primaryColorsThemes', swatchColor: '54 96% 50%', light: { ...commonLight, '--primary': '54 96% 50%', '--primary-foreground': '0 0% 20%', '--ring': '54 96% 50%'}, dark: { ...commonDark, '--primary': '54 96% 50%', '--primary-foreground': '0 0% 20%', '--ring': '54 96% 50%'} },
+    { name: 'Lime', category: 'primaryColorsThemes', swatchColor: '84 79% 44%', light: { ...commonLight, '--primary': '84 79% 44%', '--primary-foreground': '0 0% 100%', '--ring': '84 79% 44%'}, dark: { ...commonDark, '--primary': '84 79% 44%', '--primary-foreground': '0 0% 100%', '--ring': '84 79% 44%'} },
+    { name: 'Green', category: 'primaryColorsThemes', swatchColor: '142 76% 36%', light: { ...commonLight, '--primary': '142 76% 36%', '--primary-foreground': '0 0% 100%', '--ring': '142 76% 36%'}, dark: { ...commonDark, '--primary': '142 76% 36%', '--primary-foreground': '0 0% 100%', '--ring': '142 76% 36%'} },
+    { name: 'Emerald', category: 'primaryColorsThemes', swatchColor: '158 79% 41%', light: { ...commonLight, '--primary': '158 79% 41%', '--primary-foreground': '0 0% 100%', '--ring': '158 79% 41%'}, dark: { ...commonDark, '--primary': '158 79% 41%', '--primary-foreground': '0 0% 100%', '--ring': '158 79% 41%'} },
+    { name: 'Teal', category: 'primaryColorsThemes', swatchColor: '173 80% 40%', light: { ...commonLight, '--primary': '173 80% 40%', '--primary-foreground': '0 0% 100%', '--ring': '173 80% 40%'}, dark: { ...commonDark, '--primary': '173 80% 40%', '--primary-foreground': '0 0% 100%', '--ring': '173 80% 40%'} },
+    { name: 'Cyan', category: 'primaryColorsThemes', swatchColor: '190 95% 48%', light: { ...commonLight, '--primary': '190 95% 48%', '--primary-foreground': '0 0% 100%', '--ring': '190 95% 48%'}, dark: { ...commonDark, '--primary': '190 95% 48%', '--primary-foreground': '0 0% 100%', '--ring': '190 95% 48%'} },
+    { name: 'Sky', category: 'primaryColorsThemes', swatchColor: '199 98% 52%', light: { ...commonLight, '--primary': '199 98% 52%', '--primary-foreground': '0 0% 100%', '--ring': '199 98% 52%'}, dark: { ...commonDark, '--primary': '199 98% 52%', '--primary-foreground': '0 0% 100%', '--ring': '199 98% 52%'} },
+    { name: 'Blue', category: 'primaryColorsThemes', swatchColor: '217 91% 60%', light: { ...commonLight, '--primary': '217 91% 60%', '--primary-foreground': '0 0% 100%', '--ring': '217 91% 60%'}, dark: { ...commonDark, '--primary': '217 91% 60%', '--primary-foreground': '0 0% 100%', '--ring': '217 91% 60%'} },
+    { name: 'Indigo', category: 'primaryColorsThemes', swatchColor: '239 84% 67%', light: { ...commonLight, '--primary': '239 84% 67%', '--primary-foreground': '0 0% 100%', '--ring': '239 84% 67%'}, dark: { ...commonDark, '--primary': '239 84% 67%', '--primary-foreground': '0 0% 100%', '--ring': '239 84% 67%'} },
+    { name: 'Violet', category: 'primaryColorsThemes', swatchColor: '259 93% 68%', light: { ...commonLight, '--primary': '259 93% 68%', '--primary-foreground': '0 0% 100%', '--ring': '259 93% 68%'}, dark: { ...commonDark, '--primary': '259 93% 68%', '--primary-foreground': '0 0% 100%', '--ring': '259 93% 68%'} },
+    { name: 'Purple', category: 'primaryColorsThemes', swatchColor: '271 91% 65%', light: { ...commonLight, '--primary': '271 91% 65%', '--primary-foreground': '0 0% 100%', '--ring': '271 91% 65%'}, dark: { ...commonDark, '--primary': '271 91% 65%', '--primary-foreground': '0 0% 100%', '--ring': '271 91% 65%'} },
+    { name: 'Fuchsia', category: 'primaryColorsThemes', swatchColor: '291 89% 65%', light: { ...commonLight, '--primary': '291 89% 65%', '--primary-foreground': '0 0% 100%', '--ring': '291 89% 65%'}, dark: { ...commonDark, '--primary': '291 89% 65%', '--primary-foreground': '0 0% 100%', '--ring': '291 89% 65%'} },
+    { name: 'Pink', category: 'primaryColorsThemes', swatchColor: '322 95% 61%', light: { ...commonLight, '--primary': '322 95% 61%', '--primary-foreground': '0 0% 100%', '--ring': '322 95% 61%'}, dark: { ...commonDark, '--primary': '322 95% 61%', '--primary-foreground': '0 0% 100%', '--ring': '322 95% 61%'} },
+    { name: 'Rose', category: 'primaryColorsThemes', swatchColor: '341 96% 61%', light: { ...commonLight, '--primary': '341 96% 61%', '--primary-foreground': '0 0% 100%', '--ring': '341 96% 61%'}, dark: { ...commonDark, '--primary': '341 96% 61%', '--primary-foreground': '0 0% 100%', '--ring': '341 96% 61%'} },
 ];
 
 export const daisyUIThemes: ThemeDefinition[] = [
-  { name: 'Cupcake', category: 'daisyUIThemes', light: { '--primary': '335 60% 50%', '--accent': '335 60% 95%' }, dark: { '--primary': '335 60% 50%', '--accent': '335 60% 15%' } },
-  { name: 'Bumblebee', category: 'daisyUIThemes', light: { '--primary': '43 96% 56%', '--accent': '43 96% 95%' }, dark: { '--primary': '43 96% 56%', '--accent': '43 96% 15%' } },
-  { name: 'Corporate', category: 'daisyUIThemes', light: { '--primary': '215 25% 27%', '--accent': '215 25% 95%' }, dark: { '--primary': '215 25% 27%', '--accent': '215 25% 15%' } },
-  { name: 'Synthwave', category: 'daisyUIThemes', light: { '--primary': '252 82% 62%', '--accent': '303 82% 62%' }, dark: { '--primary': '252 82% 62%', '--accent': '303 82% 20%' } },
-  { name: 'Retro', category: 'daisyUIThemes', light: { '--primary': '45 89% 62%', '--accent': '35 89% 95%' }, dark: { '--primary': '45 89% 62%', '--accent': '35 89% 15%' } },
-  { name: 'Valentine', category: 'daisyUIThemes', light: { '--primary': '313 77% 65%', '--accent': '313 77% 95%' }, dark: { '--primary': '313 77% 65%', '--accent': '313 77% 15%' } },
-  { name: 'Halloween', category: 'daisyUIThemes', light: { '--primary': '23 98% 51%', '--accent': '23 98% 95%' }, dark: { '--primary': '23 98% 51%', '--accent': '23 98% 15%' } },
-  { name: 'Garden', category: 'daisyUIThemes', light: { '--primary': '158 64% 52%', '--accent': '158 64% 95%' }, dark: { '--primary': '158 64% 52%', '--accent': '158 64% 15%' } },
-  { name: 'Aqua', category: 'daisyUIThemes', light: { '--primary': '192 92% 45%', '--accent': '192 92% 95%' }, dark: { '--primary': '192 92% 45%', '--accent': '192 92% 15%' } },
-  { name: 'Lofi', category: 'daisyUIThemes', light: { '--primary': '215 28% 17%', '--accent': '215 28% 95%' }, dark: { '--primary': '215 28% 70%', '--accent': '215 28% 15%' } },
-  { name: 'Pastel', category: 'daisyUIThemes', light: { '--primary': '259 93% 68%', '--accent': '259 93% 95%' }, dark: { '--primary': '259 93% 68%', '--accent': '259 93% 15%' } },
-  { name: 'Fantasy', category: 'daisyUIThemes', light: { '--primary': '272 49% 49%', '--accent': '272 49% 95%' }, dark: { '--primary': '272 49% 49%', '--accent': '272 49% 15%' } },
-  { name: 'Wireframe', category: 'daisyUIThemes', light: { '--primary': '0 0% 45%', '--accent': '0 0% 95%' }, dark: { '--primary': '0 0% 70%', '--accent': '0 0% 15%' } },
-  { name: 'Black', category: 'daisyUIThemes', light: { '--primary': '215 28% 17%', '--accent': '215 28% 95%' }, dark: { '--primary': '215 28% 70%', '--accent': '215 28% 15%' } },
-  { name: 'Luxury', category: 'daisyUIThemes', light: { '--primary': '43 96% 56%', '--accent': '43 96% 95%' }, dark: { '--primary': '43 96% 56%', '--accent': '43 96% 15%' } },
-  { name: 'Dracula', category: 'daisyUIThemes', light: { '--primary': '259 93% 68%', '--accent': '259 93% 95%' }, dark: { '--primary': '259 93% 68%', '--accent': '259 93% 15%' } },
-  { name: 'CMYK', category: 'daisyUIThemes', light: { '--primary': '180 100% 50%', '--accent': '180 100% 95%' }, dark: { '--primary': '180 100% 50%', '--accent': '180 100% 15%' } },
-  { name: 'Autumn', category: 'daisyUIThemes', light: { '--primary': '23 98% 51%', '--accent': '23 98% 95%' }, dark: { '--primary': '23 98% 51%', '--accent': '23 98% 15%' } },
-  { name: 'Business', category: 'daisyUIThemes', light: { '--primary': '215 25% 27%', '--accent': '215 25% 95%' }, dark: { '--primary': '215 25% 70%', '--accent': '215 25% 15%' } },
-  { name: 'Acid', category: 'daisyUIThemes', light: { '--primary': '101 100% 36%', '--accent': '101 100% 95%' }, dark: { '--primary': '101 100% 36%', '--accent': '101 100% 15%' } },
-  { name: 'Lemonade', category: 'daisyUIThemes', light: { '--primary': '199 89% 48%', '--accent': '199 89% 95%' }, dark: { '--primary': '199 89% 48%', '--accent': '199 89% 15%' } },
-  { name: 'Night', category: 'daisyUIThemes', light: { '--primary': '215 28% 17%', '--accent': '215 28% 95%' }, dark: { '--primary': '215 28% 70%', '--accent': '215 28% 15%' } },
-  { name: 'Coffee', category: 'daisyUIThemes', light: { '--primary': '43 96% 56%', '--accent': '43 96% 95%' }, dark: { '--primary': '43 96% 56%', '--accent': '43 96% 15%' } },
-  { name: 'Winter', category: 'daisyUIThemes', light: { '--primary': '217 91% 60%', '--accent': '217 91% 95%' }, dark: { '--primary': '217 91% 60%', '--accent': '217 91% 15%' } },
+  { name: 'Cupcake', category: 'daisyUIThemes', swatchColor: '#65c3c8', symbol: '🧁', light: { ...commonLight, '--primary': '335 60% 50%', '--accent': '335 60% 95%' }, dark: { ...commonDark, '--primary': '335 60% 50%', '--accent': '335 60% 15%' } },
+  { name: 'Bumblebee', category: 'daisyUIThemes', swatchColor: '#f9d72f', symbol: '🐝', light: { ...commonLight, '--primary': '43 96% 56%', '--accent': '43 96% 95%' }, dark: { ...commonDark, '--primary': '43 96% 56%', '--accent': '43 96% 15%' } },
+  { name: 'Corporate', category: 'daisyUIThemes', swatchColor: '#4a6a8a', symbol: '🏢', light: { ...commonLight, '--primary': '215 25% 27%', '--accent': '215 25% 95%' }, dark: { ...commonDark, '--primary': '215 25% 27%', '--accent': '215 25% 15%' } },
+  { name: 'Synthwave', category: 'daisyUIThemes', swatchColor: '#e779c1', symbol: '🌃', light: { ...commonLight, '--primary': '252 82% 62%', '--accent': '303 82% 62%' }, dark: { ...commonDark, '--primary': '252 82% 62%', '--accent': '303 82% 20%' } },
+  { name: 'Retro', category: 'daisyUIThemes', swatchColor: '#ef9995', symbol: '🕹️', light: { ...commonLight, '--primary': '45 89% 62%', '--accent': '35 89% 95%' }, dark: { ...commonDark, '--primary': '45 89% 62%', '--accent': '35 89% 15%' } },
+  { name: 'Valentine', category: 'daisyUIThemes', swatchColor: '#e96d7b', symbol: '❤️', light: { ...commonLight, '--primary': '313 77% 65%', '--accent': '313 77% 95%' }, dark: { ...commonDark, '--primary': '313 77% 65%', '--accent': '313 77% 15%' } },
+  { name: 'Halloween', category: 'daisyUIThemes', swatchColor: '#f28c18', symbol: '🎃', light: { ...commonLight, '--primary': '23 98% 51%', '--accent': '23 98% 95%' }, dark: { ...commonDark, '--primary': '23 98% 51%', '--accent': '23 98% 15%' } },
+  { name: 'Garden', category: 'daisyUIThemes', swatchColor: '#5c7f67', symbol: '🌿', light: { ...commonLight, '--primary': '158 64% 52%', '--accent': '158 64% 95%' }, dark: { ...commonDark, '--primary': '158 64% 52%', '--accent': '158 64% 15%' } },
+  { name: 'Aqua', category: 'daisyUIThemes', swatchColor: '#34b8e2', symbol: '💧', light: { ...commonLight, '--primary': '192 92% 45%', '--accent': '192 92% 95%' }, dark: { ...commonDark, '--primary': '192 92% 45%', '--accent': '192 92% 15%' } },
+  { name: 'Lofi', category: 'daisyUIThemes', swatchColor: '#808080', symbol: '🎵', light: { ...commonLight, '--primary': '215 28% 17%', '--accent': '215 28% 95%' }, dark: { ...commonDark, '--primary': '215 28% 70%', '--accent': '215 28% 15%' } },
+  { name: 'Pastel', category: 'daisyUIThemes', swatchColor: '#d1c1d7', symbol: '🎨', light: { ...commonLight, '--primary': '259 93% 68%', '--accent': '259 93% 95%' }, dark: { ...commonDark, '--primary': '259 93% 68%', '--accent': '259 93% 15%' } },
+  { name: 'Fantasy', category: 'daisyUIThemes', swatchColor: '#6e0b75', symbol: '🦄', light: { ...commonLight, '--primary': '272 49% 49%', '--accent': '272 49% 95%' }, dark: { ...commonDark, '--primary': '272 49% 49%', '--accent': '272 49% 15%' } },
+  { name: 'Wireframe', category: 'daisyUIThemes', swatchColor: '#b8b8b8', symbol: '✍️', light: { ...commonLight, '--primary': '0 0% 45%', '--accent': '0 0% 95%' }, dark: { ...commonDark, '--primary': '0 0% 70%', '--accent': '0 0% 15%' } },
+  { name: 'Black', category: 'daisyUIThemes', swatchColor: '#000000', symbol: '🖤', light: { ...commonLight, '--primary': '215 28% 17%', '--accent': '215 28% 95%' }, dark: { ...commonDark, '--primary': '215 28% 70%', '--accent': '215 28% 15%' } },
+  { name: 'Luxury', category: 'daisyUIThemes', swatchColor: '#ffffff', symbol: '💎', light: { ...commonLight, '--primary': '43 96% 56%', '--accent': '43 96% 95%' }, dark: { ...commonDark, '--primary': '43 96% 56%', '--accent': '43 96% 15%' } },
+  { name: 'Dracula', category: 'daisyUIThemes', swatchColor: '#ff79c6', symbol: '🧛', light: { ...commonLight, '--primary': '259 93% 68%', '--accent': '259 93% 95%' }, dark: { ...commonDark, '--primary': '259 93% 68%', '--accent': '259 93% 15%' } },
+  { name: 'CMYK', category: 'daisyUIThemes', swatchColor: '#45aeee', symbol: '🖨️', light: { ...commonLight, '--primary': '180 100% 50%', '--accent': '180 100% 95%' }, dark: { ...commonDark, '--primary': '180 100% 50%', '--accent': '180 100% 15%' } },
+  { name: 'Autumn', category: 'daisyUIThemes', swatchColor: '#8c0327', symbol: '🍂', light: { ...commonLight, '--primary': '23 98% 51%', '--accent': '23 98% 95%' }, dark: { ...commonDark, '--primary': '23 98% 51%', '--accent': '23 98% 15%' } },
+  { name: 'Business', category: 'daisyUIThemes', swatchColor: '#1a202c', symbol: '👔', light: { ...commonLight, '--primary': '215 25% 27%', '--accent': '215 25% 95%' }, dark: { ...commonDark, '--primary': '215 25% 70%', '--accent': '215 25% 15%' } },
+  { name: 'Acid', category: 'daisyUIThemes', swatchColor: '#ff00ff', symbol: '🧪', light: { ...commonLight, '--primary': '101 100% 36%', '--accent': '101 100% 95%' }, dark: { ...commonDark, '--primary': '101 100% 36%', '--accent': '101 100% 15%' } },
+  { name: 'Lemonade', category: 'daisyUIThemes', swatchColor: '#519903', symbol: '🍋', light: { ...commonLight, '--primary': '199 89% 48%', '--accent': '199 89% 95%' }, dark: { ...commonDark, '--primary': '199 89% 48%', '--accent': '199 89% 15%' } },
+  { name: 'Night', category: 'daisyUIThemes', swatchColor: '#3b8ac4', symbol: '🌙', light: { ...commonLight, '--primary': '215 28% 17%', '--accent': '215 28% 95%' }, dark: { ...commonDark, '--primary': '215 28% 70%', '--accent': '215 28% 15%' } },
+  { name: 'Coffee', category: 'daisyUIThemes', swatchColor: '#6a4f4b', symbol: '☕', light: { ...commonLight, '--primary': '43 96% 56%', '--accent': '43 96% 95%' }, dark: { ...commonDark, '--primary': '43 96% 56%', '--accent': '43 96% 15%' } },
+  { name: 'Winter', category: 'daisyUIThemes', swatchColor: '#4a90e2', symbol: '❄️', light: { ...commonLight, '--primary': '217 91% 60%', '--accent': '217 91% 95%' }, dark: { ...commonDark, '--primary': '217 91% 60%', '--accent': '217 91% 15%' } },
 ];
 
 export const greyscaleThemes: ThemeDefinition[] = [
-  { name: 'Charcoal', category: 'greyscaleThemes', light: { '--primary': '0 0% 25%', '--accent': '0 0% 85%' }, dark: { '--primary': '0 0% 70%', '--accent': '0 0% 20%' } },
-  { name: 'Slate', category: 'greyscaleThemes', light: { '--primary': '210 10% 40%', '--accent': '210 10% 80%' }, dark: { '--primary': '210 10% 60%', '--accent': '210 10% 20%' } },
-  { name: 'Stone', category: 'greyscaleThemes', light: { '--primary': '30 5% 50%', '--accent': '30 5% 90%' }, dark: { '--primary': '30 5% 65%', '--accent': '30 5% 20%' } },
-  { name: 'Zinc', category: 'greyscaleThemes', light: { '--primary': '240 5% 60%', '--accent': '240 5% 95%' }, dark: { '--primary': '240 5% 70%', '--accent': '240 5% 20%' } },
-  { name: 'Neutral', category: 'greyscaleThemes', light: { '--primary': '0 0% 50%', '--accent': '0 0% 90%' }, dark: { '--primary': '0 0% 80%', '--accent': '0 0% 20%' } },
-  { name: 'Gray', category: 'greyscaleThemes', light: { '--primary': '0 0% 50%', '--accent': '0 0% 90%' }, dark: { '--primary': '0 0% 80%', '--accent': '0 0% 20%' } },
+  { name: 'Charcoal', category: 'greyscaleThemes', swatchColor: '0 0% 25%', symbol: '⚫', light: { ...commonLight, '--primary': '0 0% 25%', '--accent': '0 0% 85%' }, dark: { ...commonDark, '--primary': '0 0% 70%', '--accent': '0 0% 20%' } },
+  { name: 'Slate', category: 'greyscaleThemes', swatchColor: '210 10% 40%', symbol: '⚫', light: { ...commonLight, '--primary': '210 10% 40%', '--accent': '210 10% 80%' }, dark: { ...commonDark, '--primary': '210 10% 60%', '--accent': '210 10% 20%' } },
+  { name: 'Stone', category: 'greyscaleThemes', swatchColor: '30 5% 50%', symbol: '⚫', light: { ...commonLight, '--primary': '30 5% 50%', '--accent': '30 5% 90%' }, dark: { ...commonDark, '--primary': '30 5% 65%', '--accent': '30 5% 20%' } },
+  { name: 'Zinc', category: 'greyscaleThemes', swatchColor: '240 5% 60%', symbol: '⚫', light: { ...commonLight, '--primary': '240 5% 60%', '--accent': '240 5% 95%' }, dark: { ...commonDark, '--primary': '240 5% 70%', '--accent': '240 5% 20%' } },
+  { name: 'Neutral', category: 'greyscaleThemes', swatchColor: '0 0% 50%', symbol: '⚫', light: { ...commonLight, '--primary': '0 0% 50%', '--accent': '0 0% 90%' }, dark: { ...commonDark, '--primary': '0 0% 80%', '--accent': '0 0% 20%' } },
+  { name: 'Gray', category: 'greyscaleThemes', swatchColor: '0 0% 50%', symbol: '⚫', light: { ...commonLight, '--primary': '0 0% 50%', '--accent': '0 0% 90%' }, dark: { ...commonDark, '--primary': '0 0% 80%', '--accent': '0 0% 20%' } },
 ];
 
 export const customThemes: ThemeDefinition[] = [
     {
       name: 'SET_1_PALETTE_0',
       category: 'customThemes',
+      swatchColor: '207 83% 58%',
       light: { '--background': '0 0% 97%', '--foreground': '215 28% 17%', '--card': '0 0% 100%', '--card-foreground': '215 28% 17%', '--popover': '0 0% 100%', '--popover-foreground': '215 28% 17%', '--primary': '207 83% 58%', '--primary-foreground': '210 20% 98%', '--secondary': '210 5% 53%', '--secondary-foreground': '215 28% 17%', '--muted': '210 5% 53%', '--muted-foreground': '215 20% 65%', '--accent': '142 67% 44%', '--accent-foreground': '210 20% 98%', '--destructive': '0 86% 56%', '--destructive-foreground': '210 20% 98%', '--border': '210 5% 53%', '--input': '210 5% 53%', '--ring': '207 83% 58%', },
       dark: { '--background': '215 28% 17%', '--foreground': '0 0% 97%', '--card': '215 28% 12%', '--card-foreground': '0 0% 97%', '--popover': '215 28% 12%', '--popover-foreground': '0 0% 97%', '--primary': '207 83% 58%', '--primary-foreground': '210 20% 98%', '--secondary': '210 5% 33%', '--secondary-foreground': '0 0% 97%', '--muted': '210 5% 33%', '--muted-foreground': '215 20% 75%', '--accent': '142 67% 44%', '--accent-foreground': '210 20% 98%', '--destructive': '0 86% 56%', '--destructive-foreground': '210 20% 98%', '--border': '210 5% 33%', '--input': '210 5% 33%', '--ring': '207 83% 58%', },
     },
     {
       name: 'SET_1_PALETTE_1',
       category: 'customThemes',
+      swatchColor: '246 76% 63%',
       light: { '--background': '240 100% 94%', '--foreground': '246 33% 14%', '--card': '240 50% 98%', '--card-foreground': '246 33% 14%', '--popover': '240 50% 98%', '--popover-foreground': '246 33% 14%', '--primary': '246 76% 63%', '--primary-foreground': '240 100% 94%', '--secondary': '244 15% 80%', '--secondary-foreground': '246 33% 14%', '--muted': '244 15% 80%', '--muted-foreground': '244 15% 60%', '--accent': '185 100% 50%', '--accent-foreground': '246 33% 14%', '--destructive': '0 100% 71%', '--destructive-foreground': '240 100% 94%', '--border': '244 15% 80%', '--input': '244 15% 80%', '--ring': '246 76% 63%', },
       dark: { '--background': '246 33% 14%', '--foreground': '240 100% 94%', '--card': '248 23% 21%', '--card-foreground': '240 100% 94%', '--popover': '248 23% 21%', '--popover-foreground': '240 100% 94%', '--primary': '246 76% 63%', '--primary-foreground': '240 100% 94%', '--secondary': '244 15% 60%', '--secondary-foreground': '240 100% 94%', '--muted': '244 15% 60%', '--muted-foreground': '244 15% 40%', '--accent': '185 100% 50%', '--accent-foreground': '246 33% 14%', '--destructive': '0 100% 71%', '--destructive-foreground': '246 33% 14%', '--border': '244 15% 60%', '--input': '244 15% 60%', '--ring': '246 76% 63%', },
     },
     {
       name: 'SET_1_PALETTE_2',
       category: 'customThemes',
+      swatchColor: '16 100% 66%',
       light: { '--background': '28 83% 95%', '--foreground': '27 23% 24%', '--card': '0 0% 100%', '--card-foreground': '27 23% 24%', '--popover': '0 0% 100%', '--popover-foreground': '27 23% 24%', '--primary': '16 100% 66%', '--primary-foreground': '27 23% 24%', '--secondary': '0 0% 64%', '--secondary-foreground': '27 23% 24%', '--muted': '0 0% 64%', '--muted-foreground': '0 0% 40%', '--accent': '120 39% 49%', '--accent-foreground': '0 0% 100%', '--destructive': '0 63% 50%', '--destructive-foreground': '0 0% 100%', '--border': '0 0% 64%', '--input': '0 0% 64%', '--ring': '16 100% 66%', },
       dark: { '--background': '27 23% 14%', '--foreground': '28 83% 95%', '--card': '27 23% 18%', '--card-foreground': '28 83% 95%', '--popover': '27 23% 18%', '--popover-foreground': '28 83% 95%', '--primary': '16 100% 66%', '--primary-foreground': '27 23% 14%', '--secondary': '0 0% 50%', '--secondary-foreground': '28 83% 95%', '--muted': '0 0% 50%', '--muted-foreground': '0 0% 70%', '--accent': '120 39% 49%', '--accent-foreground': '0 0% 100%', '--destructive': '0 63% 50%', '--destructive-foreground': '28 83% 95%', '--border': '0 0% 50%', '--input': '0 0% 50%', '--ring': '16 100% 66%', },
     },
     {
       name: 'SET_1_PALETTE_3',
       category: 'customThemes',
+      swatchColor: '0 100% 71%',
       light: { '--background': '0 0% 99%', '--foreground': '0 0% 13%', '--card': '0 0% 100%', '--card-foreground': '0 0% 13%', '--popover': '0 0% 100%', '--popover-foreground': '0 0% 13%', '--primary': '0 100% 71%', '--primary-foreground': '0 0% 100%', '--secondary': '0 0% 69%', '--secondary-foreground': '0 0% 13%', '--muted': '0 0% 69%', '--muted-foreground': '0 0% 40%', '--accent': '207 89% 53%', '--accent-foreground': '0 0% 100%', '--destructive': '356 70% 54%', '--destructive-foreground': '0 0% 100%', '--border': '0 0% 69%', '--input': '0 0% 69%', '--ring': '0 100% 71%', },
       dark: { '--background': '0 0% 13%', '--foreground': '0 0% 99%', '--card': '0 0% 16%', '--card-foreground': '0 0% 99%', '--popover': '0 0% 16%', '--popover-foreground': '0 0% 99%', '--primary': '0 100% 71%', '--primary-foreground': '0 0% 13%', '--secondary': '0 0% 31%', '--secondary-foreground': '0 0% 99%', '--muted': '0 0% 31%', '--muted-foreground': '0 0% 60%', '--accent': '207 89% 53%', '--accent-foreground': '0 0% 100%', '--destructive': '356 70% 54%', '--destructive-foreground': '0 0% 99%', '--border': '0 0% 31%', '--input': '0 0% 31%', '--ring': '0 100% 71%', },
     },
     {
       name: 'SET_1_PALETTE_4',
       category: 'customThemes',
+      swatchColor: '248 80% 66%',
       light: { '--background': '220 20% 96%', '--foreground': '224 10% 16%', '--card': '0 0% 100%', '--card-foreground': '224 10% 16%', '--popover': '0 0% 100%', '--popover-foreground': '224 10% 16%', '--primary': '248 80% 66%', '--primary-foreground': '0 0% 100%', '--secondary': '220 10% 60%', '--secondary-foreground': '224 10% 16%', '--muted': '220 10% 60%', '--muted-foreground': '220 10% 40%', '--accent': '185 100% 50%', '--accent-foreground': '0 0% 100%', '--destructive': '0 84% 60%', '--destructive-foreground': '0 0% 100%', '--border': '220 10% 60%', '--input': '220 10% 60%', '--ring': '248 80% 66%', },
       dark: { '--background': '224 10% 16%', '--foreground': '220 20% 96%', '--card': '224 10% 20%', '--card-foreground': '220 20% 96%', '--popover': '224 10% 20%', '--popover-foreground': '220 20% 96%', '--primary': '248 80% 66%', '--primary-foreground': '224 10% 16%', '--secondary': '220 10% 40%', '--secondary-foreground': '220 20% 96%', '--muted': '220 10% 40%', '--muted-foreground': '220 10% 60%', '--accent': '185 100% 50%', '--accent-foreground': '224 10% 16%', '--destructive': '0 84% 60%', '--destructive-foreground': '220 20% 96%', '--border': '220 10% 40%', '--input': '220 10% 40%', '--ring': '248 80% 66%', },
     },
     {
       name: 'SET_1_PALETTE_5',
       category: 'customThemes',
+      swatchColor: '206 90% 61%',
       light: { '--background': '0 0% 99%', '--foreground': '0 0% 27%', '--card': '0 0% 100%', '--card-foreground': '0 0% 27%', '--popover': '0 0% 100%', '--popover-foreground': '0 0% 27%', '--primary': '206 90% 61%', '--primary-foreground': '0 0% 100%', '--secondary': '0 0% 75%', '--secondary-foreground': '0 0% 27%', '--muted': '0 0% 75%', '--muted-foreground': '0 0% 40%', '--accent': '350 100% 88%', '--accent-foreground': '0 0% 27%', '--destructive': '0 100% 64%', '--destructive-foreground': '0 0% 100%', '--border': '0 0% 75%', '--input': '0 0% 75%', '--ring': '206 90% 61%', },
       dark: { '--background': '0 0% 17%', '--foreground': '0 0% 89%', '--card': '0 0% 20%', '--card-foreground': '0 0% 89%', '--popover': '0 0% 20%', '--popover-foreground': '0 0% 89%', '--primary': '206 90% 61%', '--primary-foreground': '0 0% 10%', '--secondary': '0 0% 35%', '--secondary-foreground': '0 0% 89%', '--muted': '0 0% 35%', '--muted-foreground': '0 0% 60%', '--accent': '350 100% 78%', '--accent-foreground': '0 0% 10%', '--destructive': '0 100% 64%', '--destructive-foreground': '0 0% 89%', '--border': '0 0% 35%', '--input': '0 0% 35%', '--ring': '206 90% 61%', },
     },
     {
       name: 'SET_1_PALETTE_6',
       category: 'customThemes',
+      swatchColor: '330 100% 50%',
       light: { '--background': '0 0% 96%', '--foreground': '0 0% 4%', '--card': '0 0% 88%', '--card-foreground': '0 0% 4%', '--popover': '0 0% 88%', '--popover-foreground': '0 0% 4%', '--primary': '330 100% 50%', '--primary-foreground': '0 0% 96%', '--secondary': '0 0% 50%', '--secondary-foreground': '0 0% 96%', '--muted': '0 0% 50%', '--muted-foreground': '0 0% 40%', '--accent': '180 100% 50%', '--accent-foreground': '0 0% 4%', '--destructive': '0 100% 60%', '--destructive-foreground': '0 0% 96%', '--border': '0 0% 50%', '--input': '0 0% 50%', '--ring': '330 100% 50%', },
       dark: { '--background': '0 0% 4%', '--foreground': '0 0% 96%', '--card': '0 0% 12%', '--card-foreground': '0 0% 96%', '--popover': '0 0% 12%', '--popover-foreground': '0 0% 96%', '--primary': '330 100% 50%', '--primary-foreground': '0 0% 96%', '--secondary': '0 0% 50%', '--secondary-foreground': '0 0% 96%', '--muted': '0 0% 50%', '--muted-foreground': '0 0% 60%', '--accent': '180 100% 50%', '--accent-foreground': '0 0% 4%', '--destructive': '0 100% 60%', '--destructive-foreground': '0 0% 96%', '--border': '0 0% 50%', '--input': '0 0% 50%', '--ring': '330 100% 50%', },
     },
     {
       name: 'SET_1_PALETTE_7',
       category: 'customThemes',
+      swatchColor: '210 79% 45%',
       light: { '--background': '220 33% 95%', '--foreground': '0 0% 13%', '--card': '0 0% 100%', '--card-foreground': '0 0% 13%', '--popover': '0 0% 100%', '--popover-foreground': '0 0% 13%', '--primary': '210 79% 45%', '--primary-foreground': '0 0% 100%', '--secondary': '0 0% 62%', '--secondary-foreground': '0 0% 13%', '--muted': '0 0% 62%', '--muted-foreground': '0 0% 40%', '--accent': '45 100% 51%', '--accent-foreground': '0 0% 13%', '--destructive': '0 63% 50%', '--destructive-foreground': '0 0% 100%', '--border': '0 0% 62%', '--input': '0 0% 62%', '--ring': '210 79% 45%', },
       dark: { '--background': '0 0% 13%', '--foreground': '220 33% 95%', '--card': '0 0% 16%', '--card-foreground': '220 33% 95%', '--popover': '0 0% 16%', '--popover-foreground': '220 33% 95%', '--primary': '210 79% 55%', '--primary-foreground': '0 0% 13%', '--secondary': '0 0% 38%', '--secondary-foreground': '220 33% 95%', '--muted': '0 0% 38%', '--muted-foreground': '0 0% 70%', '--accent': '45 100% 51%', '--accent-foreground': '0 0% 13%', '--destructive': '0 63% 50%', '--destructive-foreground': '220 33% 95%', '--border': '0 0% 38%', '--input': '0 0% 38%', '--ring': '210 79% 55%', },
     },
     {
       name: 'SET_1_PALETTE_8',
       category: 'customThemes',
+      swatchColor: '271 76% 53%',
       light: { '--background': '220 100% 96%', '--foreground': '240 14% 15%', '--card': '220 50% 99%', '--card-foreground': '240 14% 15%', '--popover': '220 50% 99%', '--popover-foreground': '240 14% 15%', '--primary': '271 76% 53%', '--primary-foreground': '220 100% 96%', '--secondary': '240 4% 68%', '--secondary-foreground': '240 14% 15%', '--muted': '240 4% 68%', '--muted-foreground': '240 4% 48%', '--accent': '180 100% 50%', '--accent-foreground': '240 14% 15%', '--destructive': '11 100% 62%', '--destructive-foreground': '220 100% 96%', '--border': '240 4% 68%', '--input': '240 4% 68%', '--ring': '271 76% 53%', },
       dark: { '--background': '240 14% 15%', '--foreground': '220 100% 96%', '--card': '240 11% 20%', '--card-foreground': '220 100% 96%', '--popover': '240 11% 20%', '--popover-foreground': '220 100% 96%', '--primary': '271 76% 53%', '--primary-foreground': '220 100% 96%', '--secondary': '240 4% 68%', '--secondary-foreground': '220 100% 96%', '--muted': '240 4% 68%', '--muted-foreground': '240 4% 48%', '--accent': '180 100% 50%', '--accent-foreground': '240 14% 15%', '--destructive': '11 100% 62%', '--destructive-foreground': '220 100% 96%', '--border': '240 4% 68%', '--input': '240 4% 68%', '--ring': '271 76% 53%', },
     },
     {
       name: 'SET_1_PALETTE_9',
       category: 'customThemes',
+      swatchColor: '134 61% 40%',
       light: { '--background': '120 100% 98%', '--foreground': '210 10% 23%', '--card': '0 0% 100%', '--card-foreground': '210 10% 23%', '--popover': '0 0% 100%', '--popover-foreground': '210 10% 23%', '--primary': '134 61% 40%', '--primary-foreground': '0 0% 100%', '--secondary': '208 7% 48%', '--secondary-foreground': '0 0% 100%', '--muted': '208 7% 48%', '--muted-foreground': '208 7% 30%', '--accent': '211 100% 50%', '--accent-foreground': '0 0% 100%', '--destructive': '354 70% 54%', '--destructive-foreground': '0 0% 100%', '--border': '208 7% 48%', '--input': '208 7% 48%', '--ring': '134 61% 40%', },
       dark: { '--background': '210 10% 15%', '--foreground': '120 100% 98%', '--card': '210 10% 20%', '--card-foreground': '120 100% 98%', '--popover': '210 10% 20%', '--popover-foreground': '120 100% 98%', '--primary': '134 61% 50%', '--primary-foreground': '0 0% 100%', '--secondary': '208 7% 35%', '--secondary-foreground': '0 0% 100%', '--muted': '208 7% 35%', '--muted-foreground': '208 7% 60%', '--accent': '211 100% 60%', '--accent-foreground': '0 0% 100%', '--destructive': '354 70% 64%', '--destructive-foreground': '0 0% 100%', '--border': '208 7% 35%', '--input': '208 7% 35%', '--ring': '134 61% 50%', },
     },
@@ -188,5 +232,3 @@ export const appThemes: Record<ThemeCategory, ThemeDefinition[]> = {
     greyscaleThemes,
     customThemes,
 };
-
-    
