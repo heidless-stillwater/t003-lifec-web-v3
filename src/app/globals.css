@@ -3,56 +3,113 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --background: 165 88% 97%;
-    --foreground: 224 71.4% 4.1%;
-    --card: 165 88% 97%;
-    --card-foreground: 224 71.4% 4.1%;
-    --popover: 165 88% 97%;
-    --popover-foreground: 224 71.4% 4.1%;
-    --primary: 169 79% 36%;
-    --primary-foreground: 355.7 100% 97.3%;
-    --secondary: 168 70% 85%;
-    --secondary-foreground: 169 79% 20%;
-    --muted: 168 70% 90%;
-    --muted-foreground: 225.5 8.9% 46.1%;
-    --accent: 140 78% 73%;
-    --accent-foreground: 140 80% 20%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 355.7 100% 97.3%;
-    --border: 169 79% 80%;
-    --input: 165 88% 100%;
-    --ring: 169 79% 36%;
-    --radius: 0.5rem;
-  }
-  .dark {
-    --background: 224 71.4% 4.1%;
-    --foreground: 165 88% 97%;
-    --card: 224 71.4% 4.1%;
-    --card-foreground: 165 88% 97%;
-    --popover: 224 71.4% 4.1%;
-    --popover-foreground: 165 88% 97%;
-    --primary: 169 79% 36%;
-    --primary-foreground: 355.7 100% 97.3%;
-    --secondary: 169 79% 20%;
-    --secondary-foreground: 165 88% 97%;
-    --muted: 169 79% 15%;
-    --muted-foreground: 168 70% 85%;
-    --accent: 140 78% 73%;
-    --accent-foreground: 140 80% 10%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 85.7% 97.3%;
-    --border: 169 79% 20%;
-    --input: 169 79% 20%;
-    --ring: 169 79% 40%;
-  }
-}
-
-@layer base {
   * {
     @apply border-border;
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer base {
+  :root {
+    --background: 168 85% 96%;
+    --foreground: 224 71% 4%;
+    --card: 168 85% 96%;
+    --card-foreground: 224 71% 4%;
+    --popover: 168 85% 96%;
+    --popover-foreground: 224 71% 4%;
+    --primary: 171 78% 36%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 168 85% 96%;
+    --secondary-foreground: 222 77% 41%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 145 77% 76%;
+    --accent-foreground: 222 77% 41%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 145 77% 76%;
+    --input: 145 77% 76%;
+    --ring: 171 78% 36%;
+    --radius: 0.5rem;
+  }
+
+  [data-theme="dark"] {
+    --background: 224 71% 4%;
+    --foreground: 168 85% 96%;
+    --card: 224 71% 4%;
+    --card-foreground: 168 85% 96%;
+    --popover: 224 71% 4%;
+    --popover-foreground: 168 85% 96%;
+    --primary: 171 78% 36%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 224 71% 4%;
+    --secondary-foreground: 168 85% 96%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 145 77% 76%;
+    --accent-foreground: 168 85% 96%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 222 77% 41%;
+    --input: 222 77% 41%;
+    --ring: 171 78% 36%;
+  }
+
+  [data-theme="Teal Tranquility"] {
+    --primary: hsl(175, 55%, 45%);
+    --secondary: hsl(175, 30%, 95%);
+    --accent: hsl(175, 55%, 65%);
+    --neutral: hsl(210, 10%, 45%);
+    --base-100: hsl(0, 0%, 100%);
+    --info: hsl(200, 80%, 50%);
+    --success: hsl(150, 60%, 45%);
+    --warning: hsl(45, 90%, 55%);
+    --error: hsl(0, 70%, 55%);
+  }
+  [data-theme="Ruby Radiance"] {
+    --primary: hsl(340, 65%, 50%);
+    --secondary: hsl(340, 30%, 95%);
+    --accent: hsl(340, 65%, 70%);
+    --neutral: hsl(220, 10%, 45%);
+    --base-100: hsl(0, 0%, 100%);
+    --info: hsl(200, 80%, 50%);
+    --success: hsl(150, 60%, 45%);
+    --warning: hsl(45, 90%, 55%);
+    --error: hsl(0, 70%, 55%);
+  }
+  [data-theme="Amber Ambience"] {
+    --primary: hsl(40, 90%, 50%);
+    --secondary: hsl(40, 30%, 95%);
+    --accent: hsl(40, 90%, 70%);
+    --neutral: hsl(210, 10%, 45%);
+    --base-100: hsl(0, 0%, 100%);
+    --info: hsl(200, 80%, 50%);
+    --success: hsl(150, 60%, 45%);
+    --warning: hsl(45, 90%, 55%);
+    --error: hsl(0, 70%, 55%);
+  }
+  [data-theme="Emerald Elegance"] {
+    --primary: hsl(150, 55%, 45%);
+    --secondary: hsl(150, 30%, 95%);
+    --accent: hsl(150, 55%, 65%);
+    --neutral: hsl(210, 10%, 45%);
+    --base-100: hsl(0, 0%, 100%);
+    --info: hsl(200, 80%, 50%);
+    --success: hsl(150, 60%, 45%);
+    --warning: hsl(45, 90%, 55%);
+    --error: hsl(0, 70%, 55%);
+  }
+  [data-theme="Sapphire Serenity"] {
+    --primary: hsl(220, 65%, 55%);
+    --secondary: hsl(220, 30%, 95%);
+    --accent: hsl(220, 65%, 75%);
+    --neutral: hsl(210, 10%, 45%);
+    --base-100: hsl(0, 0%, 100%);
+    --info: hsl(200, 80%, 50%);
+    --success: hsl(150, 60%, 45%);
+    --warning: hsl(45, 90%, 55%);
+    --error: hsl(0, 70%, 55%);
   }
 }

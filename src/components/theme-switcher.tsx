@@ -56,7 +56,7 @@ const daisyUIThemes = [
 ];
 
 export function ThemeSwitcher() {
-  const {setTheme, setThemeType} = useTheme();
+  const {setTheme} = useTheme();
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -69,21 +69,11 @@ export function ThemeSwitcher() {
       <DropdownMenuContent className="w-56" align="end">
         <DropdownMenuLabel>Appearance</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem
-          onClick={() => {
-            setThemeType('daisy');
-            setTheme('light');
-          }}
-        >
+        <DropdownMenuItem onClick={() => setTheme('light')}>
           <Sun className="mr-2 h-4 w-4" />
           <span>Light</span>
         </DropdownMenuItem>
-        <DropdownMenuItem
-          onClick={() => {
-            setThemeType('daisy');
-            setTheme('dark');
-          }}
-        >
+        <DropdownMenuItem onClick={() => setTheme('dark')}>
           <Moon className="mr-2 h-4 w-4" />
           <span>Dark</span>
         </DropdownMenuItem>
@@ -99,13 +89,7 @@ export function ThemeSwitcher() {
             <DropdownMenuSubContent>
               <DropdownMenuGroup>
                 {cssThemes.map(theme => (
-                  <DropdownMenuItem
-                    key={theme}
-                    onClick={() => {
-                      setThemeType('css');
-                      setTheme(theme);
-                    }}
-                  >
+                  <DropdownMenuItem key={theme} onClick={() => setTheme(theme)}>
                     {theme}
                   </DropdownMenuItem>
                 ))}
@@ -121,13 +105,7 @@ export function ThemeSwitcher() {
             <DropdownMenuSubContent>
               <DropdownMenuGroup>
                 {daisyUIThemes.map(theme => (
-                  <DropdownMenuItem
-                    key={theme}
-                    onClick={() => {
-                      setThemeType('daisy');
-                      setTheme(theme);
-                    }}
-                  >
+                  <DropdownMenuItem key={theme} onClick={() => setTheme(theme)}>
                     {theme}
                   </DropdownMenuItem>
                 ))}
