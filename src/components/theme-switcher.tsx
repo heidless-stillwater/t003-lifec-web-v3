@@ -33,16 +33,16 @@ const descriptiveThemeNames: Record<string, string> = {
   'Indigo & Amber': 'Indigo & Amber',
   'Indigo Night': 'Indigo Night',
   'Emerald Isle': 'Emerald Isle',
-  SET_1_PALETTE_0: 'Ocean Breeze',
-  SET_1_PALETTE_1: 'Cosmic Indigo',
-  SET_1_PALETTE_2: 'Coral Grove',
-  SET_1_PALETTE_3: 'Red Sky',
-  SET_1_PALETTE_4: 'Cool Slate',
-  SET_1_PALETTE_5: 'Pastel Sky',
-  SET_1_PALETTE_6: 'Neon Fusion',
-  SET_1_PALETTE_7: 'Material Blue',
-  SET_1_PALETTE_8: 'Vaporwave Violet',
-  SET_1_PALETTE_9: 'Growth Green',
+  SET_1_PALETTE_0: 'Classic Corporate Blue',
+  SET_1_PALETTE_1: 'Modern Dark Mode',
+  SET_1_PALETTE_2: 'Earthy & Warm',
+  SET_1_PALETTE_3: 'Minimalist Monochrome',
+  SET_1_PALETTE_4: 'Tech & Vibrant',
+  SET_1_PALETTE_5: 'Soft & Serene',
+  SET_1_PALETTE_6: 'Bold & Contrasting',
+  SET_1_PALETTE_7: 'Google Material Inspired',
+  SET_1_PALETTE_8: 'Retro/Vaporwave',
+  SET_1_PALETTE_9: 'Green & Growth',
 };
 
 function getDescriptiveThemeName(themeName: string): string {
@@ -52,7 +52,9 @@ function getDescriptiveThemeName(themeName: string): string {
 function ThemeColorSwatch({ theme, size = 'sm' }: { theme: ThemeDefinition; size?: 'sm' | 'md' }) {
     const { mode } = useTheme();
     const sizeClasses = size === 'md' ? 'w-4 h-4' : 'w-3 h-3'
-    const primaryColor = theme.light['--primary'];
+    
+    // Fallback to light mode if dark mode values are not defined for a property
+    const primaryColor = theme.dark['--primary'] ? theme[mode]['--primary'] : theme.light['--primary'];
     const accentColor = theme.light['--accent'];
     
     return (
@@ -131,7 +133,7 @@ export function ThemeSwitcher() {
         <DropdownMenuSeparator />
         
         {(Object.keys(appThemes) as ThemeCategory[]).map((cat) => (
-          appThemes[cat].length > 0 &&
+          appThemes[cat] && appThemes[cat].length > 0 &&
           <DropdownMenuSub key={cat}>
             <DropdownMenuSubTrigger>
               <Palette className="mr-2 h-4 w-4" />
