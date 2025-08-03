@@ -1,34 +1,34 @@
 
-"use client"
+'use client'
 
-import * as React from "react"
+import * as React from 'react'
 import { appThemes, type ThemeDefinition, type ThemeMode, type ThemeCategory, defaultTheme } from '@/lib/themes'
 
 type ThemeProviderProps = {
   children: React.ReactNode
   defaultMode?: ThemeMode
-  defaultThemeName?: string
   defaultCategory?: ThemeCategory
+  defaultThemeName?: string
   storageKey?: string
 }
 
 type ThemeProviderState = {
   mode: ThemeMode
-  colorTheme: string
   category: ThemeCategory
-  currentThemeDef: ThemeDefinition | null | undefined
-  setColorTheme: (category: ThemeCategory, name:string) => void
+  themeName: string
+  currentTheme: ThemeDefinition | null
   setMode: (mode: ThemeMode) => void
+  setTheme: (category: ThemeCategory, name: string) => void
   toggleMode: () => void
 }
 
 const initialState: ThemeProviderState = {
   mode: defaultTheme.mode,
-  colorTheme: defaultTheme.name,
   category: defaultTheme.category,
-  currentThemeDef: null,
-  setColorTheme: () => null,
+  themeName: defaultTheme.name,
+  currentTheme: null,
   setMode: () => null,
+  setTheme: () => null,
   toggleMode: () => null,
 }
 
@@ -37,105 +37,96 @@ const ThemeProviderContext = React.createContext<ThemeProviderState>(initialStat
 export function ThemeProvider({
   children,
   defaultMode = defaultTheme.mode,
-  defaultThemeName = defaultTheme.name,
   defaultCategory = defaultTheme.category,
+  defaultThemeName = defaultTheme.name,
   storageKey = 'app-ui-theme',
   ...props
 }: ThemeProviderProps) {
-  const [mode, setMode] = React.useState<ThemeMode>(defaultMode)
-  const [colorTheme, setColorThemeState] = React.useState<string>(defaultThemeName)
-  const [category, setCategory] = React.useState<ThemeCategory>(defaultCategory)
-  const [initializing, setInitializing] = React.useState(true);
+  const [mode, setModeState] = React.useState<ThemeMode>(defaultMode)
+  const [category, setCategoryState] = React.useState<ThemeCategory>(defaultCategory)
+  const [themeName, setThemeNameState] = React.useState<string>(defaultThemeName)
+
+  const getCurrentTheme = React.useCallback((cat: ThemeCategory, name: string): ThemeDefinition | null => {
+    if (!appThemes[cat]) {
+        return null;
+    }
+    const themes = appThemes[cat];
+    return themes.find(theme => theme.name === name) || null
+  }, [])
+
+  const [currentTheme, setCurrentTheme] = React.useState<ThemeDefinition | null>(
+    getCurrentTheme(category, themeName)
+  )
 
   React.useEffect(() => {
-    let storedTheme: { mode: ThemeMode; colorTheme: string; category: ThemeCategory } | null = null;
+    const root = window.document.documentElement
+
+    root.classList.remove('light', 'dark')
+    root.classList.add(mode)
+
+    if (currentTheme) {
+      const themeColors = currentTheme[mode]
+      
+      Object.entries(themeColors).forEach(([key, value]) => {
+        root.style.setProperty(key, value)
+      })
+    }
+  }, [mode, currentTheme])
+
+  React.useEffect(() => {
+    const newTheme = getCurrentTheme(category, themeName)
+    setCurrentTheme(newTheme)
+  }, [category, themeName, getCurrentTheme])
+
+  React.useEffect(() => {
     try {
       const stored = localStorage.getItem(storageKey)
       if (stored) {
-        storedTheme = JSON.parse(stored);
+        const { mode: storedMode, category: storedCategory, themeName: storedThemeName } = JSON.parse(stored)
+        if (storedMode) setModeState(storedMode)
+        if (storedCategory) setCategoryState(storedCategory)
+        if (storedThemeName) setThemeNameState(storedThemeName)
       }
     } catch (error) {
-      console.warn('Failed to load theme from localStorage:', error);
+      console.warn('Failed to load theme from localStorage:', error)
     }
+  }, [storageKey])
 
-    if (storedTheme) {
-      setMode(storedTheme.mode);
-      setColorThemeState(storedTheme.colorTheme);
-      setCategory(storedTheme.category);
-    }
-    setInitializing(false);
-  }, [storageKey]);
-
-  const setColorTheme = React.useCallback((newCategory: ThemeCategory, newThemeName: string) => {
-    setCategory(newCategory);
-    setColorThemeState(newThemeName);
+  const setMode = React.useCallback((newMode: ThemeMode) => {
+    setModeState(newMode)
     try {
-      localStorage.setItem(storageKey, JSON.stringify({ mode, colorTheme: newThemeName, category: newCategory }))
+      localStorage.setItem(storageKey, JSON.stringify({ mode: newMode, category, themeName }))
+    } catch (error) {
+      console.warn('Failed to save mode to localStorage:', error)
+    }
+  }, [storageKey, category, themeName])
+
+  const setTheme = React.useCallback((newCategory: ThemeCategory, newThemeName: string) => {
+    setCategoryState(newCategory)
+    setThemeNameState(newThemeName)
+    try {
+      localStorage.setItem(storageKey, JSON.stringify({ 
+        mode, 
+        category: newCategory, 
+        themeName: newThemeName 
+      }))
     } catch (error) {
       console.warn('Failed to save theme to localStorage:', error)
     }
-  }, [mode, storageKey]);
-
-
-  React.useEffect(() => {
-    if (initializing) return;
-
-    const root = window.document.documentElement;
-    root.classList.remove('light', 'dark');
-    root.classList.add(mode);
-
-    const themeToClassName = (themeName: string) => themeName.toLowerCase().replace(/[\s_&]+/g, '-');
-
-    // Remove all color theme classes
-    const allThemeClassNames = Object.values(appThemes)
-      .flat()
-      .filter(t => t && t.name) // <-- FIX: Filter out malformed themes
-      .map(t => themeToClassName(t.name!));
-    root.classList.remove(...allThemeClassNames);
-    
-    // Add current color theme class
-    if (colorTheme) {
-      root.classList.add(themeToClassName(colorTheme));
-    }
-
-    try {
-      localStorage.setItem(storageKey, JSON.stringify({ mode, colorTheme, category }))
-    } catch (error) {
-      console.warn('Failed to save theme to localStorage:', error)
-    }
-  }, [mode, colorTheme, category, initializing]);
-
-  const currentThemeDef = React.useMemo(() => {
-    if (!category || !appThemes[category]) return null;
-    const themesForCategory = appThemes[category];
-    return themesForCategory.find(t => t.name === colorTheme) || null;
-  }, [colorTheme, category]);
-
+  }, [storageKey, mode])
 
   const toggleMode = React.useCallback(() => {
-    setMode(prevMode => {
-        const newMode = prevMode === 'light' ? 'dark' : 'light';
-        try {
-            localStorage.setItem(storageKey, JSON.stringify({ mode: newMode, colorTheme, category }));
-        } catch (error) {
-            console.warn('Failed to save theme to localStorage:', error);
-        }
-        return newMode;
-    });
-  }, [colorTheme, category, storageKey])
+    setMode(mode === 'light' ? 'dark' : 'light')
+  }, [mode, setMode])
 
   const value = {
     mode,
-    setMode: setMode as (mode: ThemeMode) => void,
-    colorTheme,
-    setColorTheme,
-    toggleMode,
-    currentThemeDef,
     category,
-  }
-
-  if (initializing) {
-    return null;
+    themeName,
+    currentTheme,
+    setMode,
+    setTheme,
+    toggleMode,
   }
 
   return (

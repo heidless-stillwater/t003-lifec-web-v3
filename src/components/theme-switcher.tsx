@@ -52,9 +52,8 @@ function getDescriptiveThemeName(themeName: string): string {
 function ThemeColorSwatch({ theme, size = 'sm' }: { theme: ThemeDefinition; size?: 'sm' | 'md' }) {
     const { mode } = useTheme();
     const sizeClasses = size === 'md' ? 'w-4 h-4' : 'w-3 h-3'
-
-    const primaryColor = theme[mode]['--primary'];
-    const accentColor = theme.light['--accent']; // Use a fixed accent for swatch consistency
+    const primaryColor = theme.light['--primary'];
+    const accentColor = theme.light['--accent'];
     
     return (
         <div className="relative flex items-center justify-center" style={{ width: size === 'md' ? '20px' : '16px', height: size === 'md' ? '20px' : '16px' }}>
@@ -93,11 +92,11 @@ function ThemeMenuItem({ theme, category, isActive }: {
   category: ThemeCategory;
   isActive: boolean;
 }) {
-  const { setColorTheme } = useTheme()
+  const { setTheme } = useTheme()
 
   return (
     <DropdownMenuItem
-      onClick={() => setColorTheme(category, theme.name)}
+      onClick={() => setTheme(category, theme.name)}
       className="flex items-center justify-between gap-2 cursor-pointer"
     >
       <div className="flex items-center gap-2">
@@ -109,7 +108,7 @@ function ThemeMenuItem({ theme, category, isActive }: {
         <span>{getDescriptiveThemeName(theme.name)}</span>
       </div>
       <div className="flex items-center gap-2">
-        <ThemeColorSwatch theme={theme} />
+        {theme.swatchColor && <ThemeColorSwatch theme={theme} />}
         {isActive && <Check className="h-4 w-4" />}
       </div>
     </DropdownMenuItem>
@@ -117,7 +116,7 @@ function ThemeMenuItem({ theme, category, isActive }: {
 }
 
 export function ThemeSwitcher() {
-  const { colorTheme, category: activeCategory } = useTheme()
+  const { themeName, category: activeCategory } = useTheme()
 
   return (
     <DropdownMenu>
@@ -144,7 +143,7 @@ export function ThemeSwitcher() {
                   key={theme.name}
                   theme={theme}
                   category={cat}
-                  isActive={colorTheme === theme.name && activeCategory === cat}
+                  isActive={themeName === theme.name && activeCategory === cat}
                 />
               ))}
             </DropdownMenuSubContent>
@@ -154,4 +153,3 @@ export function ThemeSwitcher() {
     </DropdownMenu>
   )
 }
-    
