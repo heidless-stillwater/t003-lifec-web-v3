@@ -2,6 +2,9 @@ import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Leaf, Briefcase, Heart, BrainCircuit, BarChart, Wrench, ArrowRight, Check } from 'lucide-react';
+import { Header } from '@/components/layout/header';
+import { Footer } from '@/components/layout/footer';
+
 
 const services = [
   {
@@ -74,7 +77,9 @@ const services = [
 
 export default function ServicesPage() {
   return (
-    <div className="bg-background">
+    <div className="flex flex-col min-h-screen">
+    <Header />
+    <main className="flex-grow bg-background">
       <div className="pt-24 md:pt-32 pb-16">
         <div className="container mx-auto px-4">
           <section className="text-center mb-16">
@@ -117,6 +122,8 @@ export default function ServicesPage() {
           </section>
         </div>
       </div>
+    </main>
+    <Footer />
     </div>
   );
 }
