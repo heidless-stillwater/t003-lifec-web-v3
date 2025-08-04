@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Sparkles, Phone, Mail, MapPin, Globe } from "lucide-react";
+import { Sparkles, Phone, Mail, MapPin } from "lucide-react";
 
 const navLinks = [
   { href: "/about", label: "About" },
@@ -11,7 +11,7 @@ const navLinks = [
 
 export function Footer() {
   return (
-    <footer className="bg-secondary/30 border-t">
+    <footer className="bg-secondary/50 border-t">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
           <div className="lg:col-span-1">
@@ -21,13 +21,9 @@ export function Footer() {
                 EmpowerPath Coaching
               </span>
             </Link>
-            <p className="text-muted-foreground text-sm mb-4">
+            <p className="text-muted-foreground text-sm">
               Helping you unlock your potential and live your best life.
             </p>
-             <div className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary">
-               <Globe className="w-4 h-4 text-primary" />
-               <a href="https://website.com" target="_blank" rel="noopener noreferrer">website.com</a>
-            </div>
           </div>
           <div className="md:col-start-2 lg:col-start-auto">
             <h3 className="font-headline text-lg font-semibold mb-4">Quick Links</h3>

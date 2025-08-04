@@ -1,4 +1,3 @@
-
 "use client";
 
 import Link from "next/link";
@@ -53,14 +52,14 @@ export function Header() {
     <header
       className={cn(
         "sticky top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled ? "bg-background/80 backdrop-blur-lg shadow-md" : "bg-transparent"
+        isScrolled || pathname !== '/' ? "bg-background/80 backdrop-blur-lg shadow-md" : "bg-transparent"
       )}
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           <Link href="/" className="flex items-center gap-2" onClick={closeMenu}>
             <Sparkles className="w-8 h-8 text-primary" />
-            <span className="font-headline text-2xl font-bold text-gray-800 dark:text-white">
+            <span className="font-headline text-2xl font-bold">
               EmpowerPath
             </span>
           </Link>
@@ -121,5 +120,3 @@ export function Header() {
     </header>
   );
 }
-
-    
